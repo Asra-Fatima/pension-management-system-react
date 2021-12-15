@@ -3,6 +3,12 @@ import SpringPensionerDetails from "./components/SpringPensionerDetails";
 import React, { useEffect, useState } from 'react';
 import PensionerData from "./components/PensionerData";
 import Header from "./components/Header";
+import AbstractRegister from './components/AbstractRegister';
+import AbstractLogin from './components/AbstractLogin';
+import AbstractLogout from './components/AbstractLogout';
+import Page404 from './components/Page404';
+import Home from './components/Home';
+import Footer from './components/Footer';
 
 
 const Routes = () => {
@@ -15,9 +21,14 @@ const Routes = () => {
                         <Header />
                         <div>
                             <Switch>
-                                
+
                                 <Route path="/pensioner"> <PensionerData /> </Route>
                                 <Route path="/spring"> <SpringPensionerDetails /> </Route>
+                                <Route exact path="/" loginStatus > <Home /> </Route>
+                                <Route path="/home" loginStatus> <Home /> </Route>
+                                <Route path="/register"> <AbstractRegister /> </Route>
+                                <Route path="/login"> <AbstractLogin /> </Route>
+                                <Route path="/*"> <Page404 /> </Route>
                                 
                             </Switch>
                         </div>
@@ -29,3 +40,4 @@ const Routes = () => {
     }
     
 export default Routes;
+
