@@ -6,7 +6,6 @@ class Pensioner{
     salary;
 	acc_No;
 	pensionType;
-    pensionDetails;
-    bankDetails;
+    
 }
 export default Pensioner;
