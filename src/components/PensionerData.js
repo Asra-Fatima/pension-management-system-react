@@ -101,6 +101,7 @@ import axios from 'axios';
   return (
     <div className="container-fluid">
     <h1 className="display-4 text-warning mt-3 mb-3" >Pensioner Details Component</h1>
+ 
     <p>Fetch data from backend, store it in redux store and get it to component</p>
     {/* <div className="container">
                     {<div className="col-4 border border-light shadow p-3 mb-5 bg-white">
@@ -137,12 +138,13 @@ import axios from 'axios';
                 </table>
             </div> } */}
 
-            <p>--------------------</p>
+            <p>----------------------------------</p>
             <br></br>
             <div className="container">
 
                 <div className="col-4 border border-light shadow p-3 mb-5 bg-white">
-                    <p>Remove Pensioner Details</p>
+                <p><h3>Delete Pensioner Details</h3></p>
+
                     <form className="form form-group form-primary" onSubmit={submitDeletePensioner }>
                         <input className="form-control mt-4" type="number" id="pensioner_id" name="pensioner_id" value={pensioner_id} onChange={handlePensioner} placeholder="Enter Pensioner Id to delete the details" />
                         <input className="form-control mt-4 btn btn-danger" type="submit" value="Remove Pensioner Details" />
@@ -155,13 +157,13 @@ import axios from 'axios';
                 <p>-----------------------------------------------------------------------------------------------------</p>
                 <div className="container-fluid">
                     <div className="col-4 border border-light shadow p-3 mb-5 bg-white">
-                        <p>Add Pensioner Details</p>
+                        <p><h3>Add Pensioner Details</h3></p>
 
                         <input className="form-control mt-3" type="text" id="pensioner_id" name="pensioner_id" value={newPensionerObj.setPensioner_id} onChange={handleAddPensioner} placeholder="Enter Pensioner_id"/>
                         <input className="form-control mt-3" type="number" id="age" name="age" value={newPensionerObj.age} onChange={handleAddPensioner} placeholder="Enter Age"/>
                         <input className="form-control mt-3" type="number" id="aadhar" name="aadhar" value={newPensionerObj.aadhar} onChange={handleAddPensioner} placeholder="Enter Aadhar number"/>
                         <input className="form-control mt-3" type="number" id="pan" name="pan" value={newPensionerObj.pan} onChange={handleAddPensioner} placeholder="Enter Pan number"/>
-                        <input className="form-control mt-3" type="number" id="salary" name="salary" value={newPensionerObj.salary} onChange={handleAddPensioner} placeholder="Enter Slary"/>
+                        <input className="form-control mt-3" type="number" id="salary" name="salary" value={newPensionerObj.salary} onChange={handleAddPensioner} placeholder="Enter Salary"/>
                         <input className="form-control mt-3" type="number" id="acc_no" name="acc_No" value={newPensionerObj.acc_No} onChange={handleAddPensioner} placeholder="Enter Account number"/>
                         <input className="form-control mt-3" type="text" id="pensionType" name="pensionType" value={newPensionerObj.pensionType} onChange={handleAddPensioner} placeholder="Enter PensionType"/>
                         <input className="form-control mt-3 btn btn-primary" type="submit" value="Add Pensioner" onClick={addPensioner} />
@@ -200,7 +202,8 @@ import axios from 'axios';
 <p>-------------------------------------------------</p>
 <div>
                 <div className="col-4 border border-light shadow p-3 mb-5 bg-white">
-                    <p>Find all Pensioner Details</p>
+                <p><h3>Find all Pensioner Details</h3></p>
+
                     <div>
                         <form className="form form-group form-primary">
                             <input className="mt-3 btn btn-primary btn-block" type="button" onClick={submitGetAllPensioners} value="Find All Pensioner Details" />
@@ -241,13 +244,13 @@ import axios from 'axios';
 <p>--------------------------------------------------</p>
 <div className="container">
                     <div className="col-4 border border-light shadow p-3 mb-5 bg-white">
-                        <p>Update Pensioner Details</p>
+                    <p><h3>Update Pensioner Details</h3></p>
 
                         <input className="form-control mt-3" type="text" id="pensioner_id" name="pensioner_id" value={updatePensionerDetails.setPensioner_id} onChange={handleUpdatePensioner} placeholder="Enter Pensioner_id"/>
                         <input className="form-control mt-3" type="number" id="age" name="age" value={updatePensionerDetails.age} onChange={handleUpdatePensioner} placeholder="Enter Age"/>
                         <input className="form-control mt-3" type="number" id="aadhar" name="aadhar" value={updatePensionerDetails.aadhar} onChange={handleUpdatePensioner} placeholder="Enter Aadhar number"/>
                         <input className="form-control mt-3" type="number" id="pan" name="pan" value={updatePensionerDetails.pan} onChange={handleUpdatePensioner} placeholder="Enter Pan number"/>
-                        <input className="form-control mt-3" type="number" id="salary" name="salary" value={updatePensionerDetails.salary} onChange={handleUpdatePensioner} placeholder="Enter Slary"/>
+                        <input className="form-control mt-3" type="number" id="salary" name="salary" value={updatePensionerDetails.salary} onChange={handleUpdatePensioner} placeholder="Enter Salary"/>
                         <input className="form-control mt-3" type="number" id="acc_no" name="acc_No" value={updatePensionerDetails.acc_No} onChange={handleUpdatePensioner} placeholder="Enter Account number"/>
                         <input className="form-control mt-3" type="text" id="pensionType" name="pensionType" value={updatePensionerDetails.pensionType} onChange={handleUpdatePensioner} placeholder="Enter PensionType"/>
 

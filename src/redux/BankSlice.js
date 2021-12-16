@@ -1,57 +1,45 @@
 import { createSlice } from "@reduxjs/toolkit";
+import Bank from "../components/models/BankDetails";
 
-const BankSlice = createSlice(
-    {
-        name: 'bank',
 
-        initialState: {
+const BankSlice = createSlice({
 
-            bankState: new BankDetails(),
-            bankList: []
+    name: 'bank',
+
+    initialState: {
+       
+
+        bankState: new Bank(),
+        // empList: []
+        
+
+
+    },
+
+    reducers: {
+
+        getBankById: (state, action) => {
+            console.log('BankSlice reducers getBankById');
+            state.bankState = action.payload;
         },
-        reducers:{
-
-            getBankById: (state, action) => {
-                console.log('BankSlice reducers getBankById');
-                state.bankState = action.payload;
-            }
+        addbankdetails: (state, action) => {
+            console.log('Add bank');
+            state.bankState = action.payload;
+        },
+        deletebankbyaccno:(state,action)=>{
+            console.log('delete bank');
+            state.bankState=action.payload;
+        },
+        updatebankdetails:(state,action)=>{
+            state.bankState=action.payload;
         }
+
+
+        
+        // more methods will be added 
     }
-);
-export const { getBankById } = BankSlice.actions;
+});
+
+export const { getBankById,addbankdetails,deletebankbyaccno } = BankSlice.actions;
+
 export default BankSlice.reducer;
-
-// name: 'emp',
-
-// initialState: {
-//     // empState: {
-//     //     eid: 101,
-//     //     firstName: 'Sonu',
-//     //     salary: 10.5
-//     // }
-
-//     empState: new Employee(),
-//     empList: []
-
-
-// },
-
-// reducers: {
-
-//     getEmpById: (state, action) => {
-//         console.log('EmpSlice reducers getEmpById');
-//         state.empState = action.payload;
-//     },
-
-//     getAllEmps: (state, action) => {
-//         console.log('EmpSlice reducers getAllEmps');
-//         state.empList = action.payload;
-//     }
-
-//     // more methods will be added 
-// }
-// });
-
-// export const { getEmpById, getAllEmps } = EmpSlice.actions;
-
-// export default EmpSlice.reducer;

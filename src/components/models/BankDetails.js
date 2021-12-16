@@ -1,5 +1,10 @@
-class AbstractUser {
-    adminName;
-    password;
+class Bank {
+    accno;
+    bankName;
+    branch;
+    ifscCode;
+    AccHolderName;
+
 }
-export default AbstractUser;
+
+export default Bank;
