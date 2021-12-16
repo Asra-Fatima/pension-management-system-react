@@ -1,76 +1,38 @@
-import { Link } from "react-router-dom";
-import React, { useEffect, useState } from 'react';
-
+import React from 'react'
 const Header = () => {
 
-    let [loginStatus, setLoginStatus] = useState(false);
-
-    useEffect(() => {
-        setLoginStatus(sessionStorage.getItem('isUserLoggedIn'));
-    }, []);
-
-    // if (loginStatus) {
-    //     return (
-    //         <header class="header sticky-top">
-    //             <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-dark bg-dark">
-    //                 <div class="container">
-    //                     <Link className="navbar-brand" to="/">
-    //                         <img src="https://www.capgemini.com/wp-content/themes/capgemini-komposite/assets/images/logo.svg"
-    //                             height="24px" alt="Capgemini" />
-    //                     </Link>
-    //                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-    //                         <span class="navbar-toggler-icon"></span>
-    //                     </button>
-    //                     <div class="collapse navbar-collapse" id="navbarResponsive">
-    //                         <ul class="navbar-nav ml-auto">
-    //                             <li className="nav-item">
-    //                                 <Link className="nav-link" to="/hello" >Hello</Link>
-    //                             </li>
-    //                             <li className="nav-item">
-    //                                 <Link className="nav-link" to="/emp" >Emp</Link>
-    //                             </li>
-    //                             <li className="nav-item">
-    //                                 <Link className="nav-link" to="/spring" >Spring</Link>
-    //                             </li>
-    //                             <li className="nav-item">
-    //                                 <Link className="nav-link" to="/logout" >Logout</Link>
-    //                             </li>
-    //                         </ul>
-    //                     </div>
-    //                 </div>
-    //             </nav>
-    //         </header>
-    //     );
-    // }
-    // else {
-        return (
-            <header class="header sticky-top">
-                <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-dark bg-dark">
-                    <div class="container">
-                        <Link className="navbar-brand" to="/">
-                            <img src="https://pensionersportal.gov.in/img/digital_india.png"
-                                height="24px" alt="Pension" />
-                        </Link>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarResponsive">
-                            <ul class="navbar-nav ml-auto">
-
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/register" >Register</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/login" >Login</Link>
-                                </li>
-                            </ul>
-                        </div>
+    return (
+        <header class="header sticky-top">
+            <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-dark bg-secondary">
+                <div class="container">
+                    <span className="navbar-brand" to="/">
+                        <img src="https://cdn.pixabay.com/photo/2020/11/14/19/01/elderly-5743157_1280.png"
+                            height="24px" alt="Pension" />Pensioner Details
+                    </span>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto">
+                            {/* <li className="nav-item">
+                                <span className="nav-link" to="/hello" >Bank</span>
+                            </li> */}
+                            <li className="nav-item">
+                                <span className="nav-link" to="/emp" >Personal</span>
+                            </li>
+                            <li className="nav-item">
+                                <span className="nav-link" to="/spring" >Pension</span>
+                            </li>
+                            <li className="nav-item">
+                                <span className="nav-link" to="/register" >About</span>
+                            </li>
+                            
+                        </ul>
                     </div>
-                </nav>
-            </header>
-        );
-    // }
-
+                </div>
+            </nav>
+        </header>
+    );
 }
 
 export default Header;

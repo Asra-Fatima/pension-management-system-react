@@ -1,10 +1,17 @@
-import Routes from "./Routes";
+import './App.css';
+import Header from './components/Header';
 
-const App = () => {
+import PensionerData from './components/PensionerData';
+
+
+function App() {
   return (
-    <div className="bg-light">
-      <Routes />
-    </ div>
+    <div className="App">
+     <Header/>
+    
+     <PensionerData/>
+    
+    </div>
   );
 }
 

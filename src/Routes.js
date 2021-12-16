@@ -30,6 +30,7 @@ const Routes = () => {
                                 <Route path="/login"> <AbstractLogin /> </Route>
                                 <Route path="/*"> <Page404 /> </Route>
                                 
+                                
                             </Switch>
                         </div>
                         {/* <Footer /> */}

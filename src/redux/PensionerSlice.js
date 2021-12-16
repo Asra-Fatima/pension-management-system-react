@@ -1,10 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 import Pensioner from "../components/models/Pensioner";
+
+
 const PensionerSlice = createSlice({
+
     name: 'pensioner',
-    initialState:{
+
+    initialState: {
+       
+
         pensionerState: new Pensioner(),
-        pensionerList: []
+         pensionerList: []
+        
+
+
     },
 
     reducers: {
@@ -28,6 +37,9 @@ const PensionerSlice = createSlice({
             console.log('PensionerSlice reducers deletePensioner ');
             state.pensionerState = action.payload;
         },
+
+        
+        // more methods will be added 
     }
 });
 
