@@ -11,10 +11,8 @@ import axios from 'axios';
     const pensionerDataFromStore = useSelector((state) => state.pensioner.pensionerState);
     const [newPensionerObj, setNewPensionerObj] = useState('');
     const [displayPensionerObj, setDisplayPensionerObj] = useState('');
-    const [updatePensionerDetails, setUpdatePensionerDetails] = useState({ age: '', aadhar: '', pan:"", salary:"", acc_No:"", pensionType:"" });
-    const [displayUpdatePensionerDetails, setDisplayUpdatePensionerDetails] = useState('');
-
-
+    const [displyUpdatePensioner, setDisplyUpdatePensioner] = useState('');
+    const [updatePensionerDetails, setUpdatePensionerDetails] = useState({pensioner_id:'', age: '', aadhar: '', pan:'', salary:'', acc_No:'', pensionType:''});
         const [pensionerList, setPensionerList] = useState([]);
 
     const handlePensioner = (e) => {
@@ -28,13 +26,30 @@ import axios from 'axios';
             [e.target.name]: e.target.value
         });
     }
-    const handleUpdatePensioner = (e) => {
-        console.log(e.target.value);
-        setUpdatePensionerDetails({
-            ...updatePensioner,
-            [e.target.name]: e.target.value
-        });
+        const handleUpdatePensioner = (e) => {
+                console.log(e.target.value);
+                setUpdatePensionerDetails({
+                    ...updatePensionerDetails,
+                    [e.target.name]: e.target.value
+                });
+            }
+
+    const updatePensioner = (event) => {
+        axios.put(`/updatepensioner`,updatePensionerDetails)
+            .then((response) => {
+                alert('Updated')
+                console.log(response.data);
+            }).catch(() => {
+                alert("Not updated")
+                console.log('Error')
+            });
+        event.preventDefault();
     }
+
+
+    
+            
+        
 
     // const submitGetBankById = (evt) => {
     //     evt.preventDefault();
@@ -63,7 +78,7 @@ import axios from 'axios';
     }
     const addPensioner = (evt) => {
         evt.preventDefault();
-        addPensionerService(newPensionerObj)
+        axios.post(`http://localhost:8082/addpensioner`, newPensionerObj)
             .then((response) => {
                 setDisplayPensionerObj(response.data);
                 alert('Pensioner Details  added successfully.');
@@ -83,30 +98,15 @@ import axios from 'axios';
                 console.log(error.message)
             });
     }
-    const updatePensioner = (event) => {
-        updatePensionerService(updatePensionerDetails)
-            .then((response) => {
-                setDisplayUpdatePensionerDetails(response.data);
-                alert('Pensioner Details update successfully.');
-
-            }).catch(() => {
-                alert("pensioner Details could not be updated.");
-                setUpdatePensionerDetails('')
-            
-            });
-        event.preventDefault();
         
-    }
-
   return (
     <div className="container-fluid">
-  <h1 className="display-5 text-warning mt-5 mb-5" >Pensioner Details Component</h1>
-    
+    <h1 className="display-4 text-warning mt-3 mb-3" >Pensioner Details Component</h1>
+    <p>Fetch data from backend, store it in redux store and get it to component</p>
     {/* <div className="container">
                     {<div className="col-4 border border-light shadow p-3 mb-5 bg-white">
                         
                 <table className="table table-light table-striped ">
-                <table border="1" align="right"></table>
                     <thead>
                         <tr>
                             <th>Pensioner_id</th>
@@ -138,7 +138,7 @@ import axios from 'axios';
                 </table>
             </div> } */}
 
-<p>----------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+            <p>--------------------</p>
             <br></br>
             <div className="container">
 
@@ -152,17 +152,17 @@ import axios from 'axios';
 
                 </div>
              
-                <p>----------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+
+                <p>-----------------------------------------------------------------------------------------------------</p>
                 <div className="container-fluid">
                     <div className="col-4 border border-light shadow p-3 mb-5 bg-white">
                         <p>Add Pensioner Details</p>
-              
 
                         <input className="form-control mt-3" type="text" id="pensioner_id" name="pensioner_id" value={newPensionerObj.setPensioner_id} onChange={handleAddPensioner} placeholder="Enter Pensioner_id"/>
                         <input className="form-control mt-3" type="number" id="age" name="age" value={newPensionerObj.age} onChange={handleAddPensioner} placeholder="Enter Age"/>
                         <input className="form-control mt-3" type="number" id="aadhar" name="aadhar" value={newPensionerObj.aadhar} onChange={handleAddPensioner} placeholder="Enter Aadhar number"/>
                         <input className="form-control mt-3" type="number" id="pan" name="pan" value={newPensionerObj.pan} onChange={handleAddPensioner} placeholder="Enter Pan number"/>
-                        <input className="form-control mt-3" type="number" id="salary" name="salary" value={newPensionerObj.salary} onChange={handleAddPensioner} placeholder="Enter Salary"/>
+                        <input className="form-control mt-3" type="number" id="salary" name="salary" value={newPensionerObj.salary} onChange={handleAddPensioner} placeholder="Enter Slary"/>
                         <input className="form-control mt-3" type="number" id="acc_no" name="acc_No" value={newPensionerObj.acc_No} onChange={handleAddPensioner} placeholder="Enter Account number"/>
                         <input className="form-control mt-3" type="text" id="pensionType" name="pensionType" value={newPensionerObj.pensionType} onChange={handleAddPensioner} placeholder="Enter PensionType"/>
                         <input className="form-control mt-3 btn btn-primary" type="submit" value="Add Pensioner" onClick={addPensioner} />
@@ -197,10 +197,11 @@ import axios from 'axios';
                     </div>
 
                 </div>
-                <p>----------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+
+<p>-------------------------------------------------</p>
 
 <div>
-            
+            <p>Find all Pensioner Details</p>
             <div className="col-5 border border-light shadow p-3 mb-5 bg-white">
 
 
@@ -209,8 +210,7 @@ import axios from 'axios';
                         <input className="mt-3 btn btn-primary btn-block" type="button" onClick={submitGetAllPensioners} value="Find All Pensioner Details" />
                     </form>
                 </div >
-                <table  className="table table-light table-striped ">
-                
+                <table className="table table-light table-striped ">
                     <thead>
                         <tr>
                             <th>Pensioner_id</th>
@@ -241,61 +241,59 @@ import axios from 'axios';
     
 
 
-        <p>----------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+<p>--------------------------------------------------</p>
 <div className="container">
-                    <div className="col-4 border border-light shadow p-3 mb-5 bg-white">
-                        <p>Update Pensioner Details</p>
+                     <div className="col-4 border border-light shadow p-3 mb-5 bg-white">
+                         <p>Update Pensioner Details</p>
 
-                        <form>
-                        <input className="form-control mt-3" type="text" id="pensioner_id" name="pensioner_id" value={updatePensionerDetails.setPensioner_id} onChange={handleUpdatePensioner} placeholder="Enter Pensioner_id"/>
-                        <input className="form-control mt-3" type="number" id="age" name="age" value={updatePensionerDetails.age} onChange={handleUpdatePensioner} placeholder="Enter Age"/>
-                        <input className="form-control mt-3" type="number" id="aadhar" name="aadhar" value={updatePensionerDetails.aadhar} onChange={handleUpdatePensioner} placeholder="Enter Aadhar number"/>
-                        <input className="form-control mt-3" type="number" id="pan" name="pan" value={updatePensionerDetails.pan} onChange={handleUpdatePensioner} placeholder="Enter Pan number"/>
-                        <input className="form-control mt-3" type="number" id="salary" name="salary" value={updatePensionerDetails.salary} onChange={handleUpdatePensioner} placeholder="Enter Salary"/>
-                        <input className="form-control mt-3" type="number" id="acc_no" name="acc_No" value={updatePensionerDetails.acc_No} onChange={handleUpdatePensioner} placeholder="Enter Account number"/>
-                        <input className="form-control mt-3" type="text" id="pensionType" name="pensionType" value={updatePensionerDetails.pensionType} onChange={handleUpdatePensioner} placeholder="Enter PensionType"/>
-                        <input className="form-control mt-3 btn btn-primary" type="submit" value="Update Pensioner" onClick={updatePensioner} />
-                        </form>
-                        <table className="table w-auto small table table-light table-striped ">
-                            <thead>
-                                <tr>
-                                <th>Pensioner_id</th>    
-                                <th>Age</th>
-                                <th>Aadhar</th>
-                                <th>Pan</th>
-                                <th>Salary</th>
-                                <th>Acc_no</th>
-                                <th>PensionType</th>
+                         <input className="form-control mt-3" type="text" id="pensioner_id" name="pensioner_id" value={updatePensionerDetails.pensioner_id} onChange={handleUpdatePensioner} placeholder="Enter Pensioner_id"/>
+                         <input className="form-control mt-3" type="number" id="age" name="age" value={updatePensionerDetails.age} onChange={handleUpdatePensioner} placeholder="Enter Age"/>
+                         <input className="form-control mt-3" type="number" id="aadhar" name="aadhar" value={updatePensionerDetails.aadhar} onChange={handleUpdatePensioner} placeholder="Enter Aadhar number"/>
+                         <input className="form-control mt-3" type="number" id="pan" name="pan" value={updatePensionerDetails.pan} onChange={handleUpdatePensioner} placeholder="Enter Pan number"/>
+                         <input className="form-control mt-3" type="number" id="salary" name="salary" value={updatePensionerDetails.salary} onChange={handleUpdatePensioner} placeholder="Enter Slary"/>
+                         <input className="form-control mt-3" type="number" id="acc_no" name="acc_No" value={updatePensionerDetails.acc_No} onChange={handleUpdatePensioner} placeholder="Enter Account number"/>
+                         <input className="form-control mt-3" type="text" id="pensionType" name="pensionType" value={updatePensionerDetails.pensionType} onChange={handleUpdatePensioner} placeholder="Enter PensionType"/>
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                <td>{updatePensionerDetails.pensioner_id}</td>
-                                    <td>{updatePensionerDetails.age}</td>
-                                    <td>{updatePensionerDetails.pan}</td>
-                                    <td>{updatePensionerDetails.aadhar}</td>
-                                    <td>{updatePensionerDetails.salary}</td>
-                                    <td>{updatePensionerDetails.acc_No}</td>
-                                    <td>{updatePensionerDetails.pensionType}</td>
+                         <input className="form-control mt-3 btn btn-primary" type="submit" value="UpdatePensioner" onClick={updatePensioner} />
+                         <table className="table w-auto small table table-light table-striped ">
+                             <thead>
+                                 <tr>
+                                 <th>Pensioner_id</th>    
+                                 <th>Age</th>
+                                 <th>Aadhar</th>
+                                 <th>Pan</th>
+                                 <th>Salary</th>
+                                 <th>Acc_no</th>
+                                 <th>PensionType</th>
+                               </tr>
+                           </thead>
+                             <tbody>
+                                 <tr>
+                                    <td>{updatePensionerDetails.pensioner_id}</td>
+                                     <td>{updatePensionerDetails.age}</td>
+                                     <td>{updatePensionerDetails.pan}</td>
+                                     <td>{updatePensionerDetails.aadhar}</td>
+                                     <td>{updatePensionerDetails.salary}</td>
+                                     <td>{updatePensionerDetails.acc_No}</td>
+                                     <td>{updatePensionerDetails.pensionType}</td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
+                                 </tr>
+                             </tbody>
+                         </table>
                     </div>
+                    </div>
+         {/* </div> */}
 
-                </div>
-
-                </div>
-            // {/* </div> */}
-
-        // </div>
-    // </div>
+        </div>
+ </div>
   );
                     }
                 
 export default PensionerData;
+
+
+
 
 
 // import React from 'react'
@@ -306,64 +304,37 @@ export default PensionerData;
 // import axios from 'axios';
 // import Pensioner from './models/pensioner';
 // import PensionerSlice from '../redux/PensionerSlice';
-
+ 
 
 
 // const PensionerData = props => {
-//     const dispatch = useDispatch();
-//     const [pensionerList, setPensionerList] = useState([]);
+//     const [displyUpdatePensioner, setDisplyUpdatePensioner] = useState('');
+//     const [updatePensionerDetails, setUpdatePensionerDetails] = useState({pensioner_id:'', age: '', aadhar: '', pan:'', salary:'', acc_No:'', pensionType:''});
 
-//     const submitGetAllPensioners = (e) => {
-//         console.log();
-//         axios.get(`/getpensioner`)
+
+
+//     const handleUpdatePensioner = (e) => {
+//                 console.log(e.target.value);
+//                 setUpdatePensionerDetails({
+//                     ...updatePensionerDetails,
+//                     [e.target.name]: e.target.value
+//                 });
+//             }
+
+//     const updatePensioner = (event) => {
+//         axios.put(`/updatepensioner`,updatePensionerDetails)
 //             .then((response) => {
-//                 setPensionerList(response.data);
-//             }).catch(error => {
-//                 console.log(error.message)
+//                 alert('Updated')
+//                 console.log(response.data);
+//             }).catch(() => {
+//                 alert("Not updated")
+//                 console.log('Error')
 //             });
+//         event.preventDefault();
 //     }
+
+    
+
 
 
 //     return (
-
-//         <div>
-//             <p>Find all Pensioner Details</p>
-//             <div className="col-5 border border-light shadow p-3 mb-5 bg-white">
-
-
-//                 <div>
-//                     <form className="form form-group form-primary">
-//                         <input className="mt-3 btn btn-primary btn-block" type="button" onClick={submitGetAllPensioners} value="Find All Pensioner Details" />
-//                     </form>
-//                 </div >
-//                 <table className="table table-light table-striped ">
-//                     <thead>
-//                         <tr>
-//                             <th>Pensioner_id</th>
-//                             <th>Age</th>
-//                             <th>Aadhar</th>
-//                             <th>Pan</th>
-//                             <th>Salary</th>
-//                             <th>Acc_no</th>
-//                             <th>PensionType</th>
-//                         </tr>
-//                     </thead>
-//                     <tbody>
-//                         {pensionerList.map((pensioner, k) => {
-//                             return (
-//                                 <tr k={k}><td>{pensioner.pensioner_id}</td>  <td>{pensioner.age}</td>  <td>{pensioner.aadhar}</td> <td>{pensioner.pan}</td> <td>{pensioner.salary}</td> <td>{pensioner.acc_No}</td> <td>{pensioner.pensionType}</td></tr>
-//                             )
-//                         })}
-//                     </tbody>
-//                 </table>
-
-//             </div>
-
-//         </div>
-
-
-
-
-//     );
-// }
-// export default PensionerData;
