@@ -5,22 +5,22 @@ import axios from 'axios';
 
 const getAllPensionerService = () => {
     console.log(`getAllPensionerService`);
-    return axios.get(`http://localhost:8082/getpensioner`);
+    return axios.get(`/getpensioner`);
 }
 
 const addPensionerService = (pensioner) => {
     console.log(`getPensionerByIdService`);
-    return axios.post(`http://localhost:8082/addpensioner`, pensioner);
+    return axios.post(`/addpensioner`, pensioner);
 }
 
 const updatePensionerService = (pensioner) => {
-    console.log(`getPensionerByIdService`);
-    return axios.put(`http://localhost:8082/updatepensioner`, pensioner);
+    console.log(`updated service`);
+    return axios.put(`/updatepensioner`, pensioner);
 }
 
 const deletePensionerService = (pensioner_id) => {
     console.log(`getPensionerByIdService`);
-    return axios.delete(`http://localhost:8082/deletepensioner/${pensioner_id}`);
+    return axios.delete(`/deletepensioner/${pensioner_id}`);
 }
 
 

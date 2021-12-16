@@ -102,7 +102,7 @@ import axios from 'axios';
   return (
     <div className="container">
     <h1 className="display-5 text-warning mt-5 mb-5" >Bank Component</h1>
-    <p>Fetch data from backend, store it in redux store and get it to component</p>
+   
     <div className="container">
     <div className="col-5 border border-light shadow p-3 mb-5 bg-white">
                         <p>Add Bank Account</p>
@@ -142,7 +142,7 @@ import axios from 'axios';
 
 
                 
-       
+                    <p>----------------------------------------------------------------------------------------------------------------------------------------------------------</p>
 
             <div className="col-4 border border-light shadow p-3 mb-5 bg-white">
                 <p>Search Bank Account</p>
@@ -175,7 +175,7 @@ import axios from 'axios';
                 </table>
             </div>
 
-            <p>--------------------</p>
+            <p>----------------------------------------------------------------------------------------------------------------------------------------------------------</p>
             <br></br>
             <div className="container">
 
@@ -190,13 +190,12 @@ import axios from 'axios';
                 </div>
              
 
-                <p>-----------------------------------------------------------------------------------------------------</p>
-                
-                
                 </div>
+                
+               
 
 
-<p>-------------------------------------------------</p>
+<p>----------------------------------------------------------------------------------------------------------------------------------------------------------</p>
                 <div className="container">
                     <div className="col-4 border border-light shadow p-3 mb-5 bg-white">
                         <p>update Bank Account</p>

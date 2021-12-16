@@ -9,6 +9,7 @@ import AbstractLogout from './components/AbstractLogout';
 import Page404 from './components/Page404';
 import Home from './components/Home';
 import Footer from './components/Footer';
+import BankData from './components/BankData';
 
 
 const Routes = () => {
@@ -29,6 +30,7 @@ const Routes = () => {
                                 <Route path="/register"> <AbstractRegister /> </Route>
                                 <Route path="/login"> <AbstractLogin /> </Route>
                                 <Route path="/*"> <Page404 /> </Route>
+                                <Route path="/bank"> <BankData /> </Route>
                                 
                                 
                             </Switch>

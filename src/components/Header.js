@@ -14,11 +14,11 @@ const Header = () => {
                     </button>
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                         <ul class="navbar-nav ml-auto">
-                            {/* <li className="nav-item">
+                            { <li className="nav-item">
                                 <span className="nav-link" to="/hello" >Bank</span>
-                            </li> */}
+                            </li> }
                             <li className="nav-item">
-                                <span className="nav-link" to="/emp" >Personal</span>
+                                <span className="nav-link" to="/emp" >Pensioner Details</span>
                             </li>
                             <li className="nav-item">
                                 <span className="nav-link" to="/spring" >Pension</span>
